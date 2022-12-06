@@ -102,10 +102,12 @@ const deleteItem = ((req, res, next) => {
     function (err, result, f) {
         if (err) { res.json({success:false, err}); return; }
         console.log(result);
-        if(result.OkPacket?.affectedRows === 0)
+        if(result.affectedRows === 0){
             res.json({success:false, err:{sqlMessage:'No Rows Affected.'}});
+            return;
+        }
         else
-            res.json({success:true});        return;
+            res.json({success:true});        
     });
 
 })
@@ -124,10 +126,12 @@ const updateItem = ((req, res, next) => {
         function (err, result, f) {
             if (err) { res.json({success:false, err}); return; }
             console.log("result is", result.affectedRows);
-            if(result.affectedRows === 0)
+            if(result.affectedRows === 0){
                 res.json({success:false, err:{sqlMessage:'No Rows Affected.'}});
+                return;
+            }
             else
-                res.json({success:true});            return;
+                res.json({success:true});
         });
 
             // console.log(dbJSON);
@@ -148,11 +152,12 @@ const addItem = ((req, res, next) => {
         function (err, result, f) {
             if (err) { res.json({success:false, err}); return; }
             console.log(result);
-            if(result.affectedRows === 0)
+            if(result.affectedRows === 0){
                 res.json({success:false, err:{sqlMessage:'No Rows Affected.'}});
+                return;
+            }
             else
                 res.json({success:true});
-            return;
         });
 
             // console.log(dbJSON);
