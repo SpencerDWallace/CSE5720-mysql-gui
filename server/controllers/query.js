@@ -59,7 +59,6 @@ const generateValues = (data) =>{
 
 const queryDB = ((req, res, next) =>{
     let fields = connection.tables_internal;
-    // let fields = ['advertiser', 'blurt', 'blurt_analysis', 'celebrity', 'follow', 'hobby', 'topic', 'user', 'user_ad', 'vendor', 'vendor_ambassador', 'vendor_topics'];
     let dbJSON = {};
     fields.forEach(field=>{
         dbJSON[field] = [];
@@ -69,7 +68,6 @@ const queryDB = ((req, res, next) =>{
         connection.query(`SELECT* FROM ${field} LIMIT 10`,
         function (err, result, f) {
             if (err) { console.log(err); return; }
-            // console.log(dbJSON);
             result.forEach(res=>{
                 Object.keys(res).forEach(key=>{
                     if(res[key] instanceof Date){
@@ -133,8 +131,6 @@ const updateItem = ((req, res, next) => {
             else
                 res.json({success:true});
         });
-
-            // console.log(dbJSON);
 })
 
 const addItem = ((req, res, next) => {
@@ -159,8 +155,6 @@ const addItem = ((req, res, next) => {
             else
                 res.json({success:true});
         });
-
-            // console.log(dbJSON);
 })
 
 module.exports = {
