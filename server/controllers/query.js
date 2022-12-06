@@ -58,7 +58,7 @@ const generateValues = (data) =>{
 }
 
 const queryDB = ((req, res, next) =>{
-    let fields = ['authors', 'customers', 'publishers', 'subjects', 'titleauthors', 'titles'];
+    let fields = connection.tables_internal;
     // let fields = ['advertiser', 'blurt', 'blurt_analysis', 'celebrity', 'follow', 'hobby', 'topic', 'user', 'user_ad', 'vendor', 'vendor_ambassador', 'vendor_topics'];
     let dbJSON = {};
     fields.forEach(field=>{
